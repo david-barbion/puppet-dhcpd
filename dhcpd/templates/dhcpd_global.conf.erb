@@ -1,0 +1,26 @@
+
+# Global configuration follows
+<% @options.each do |optname,optvalue| -%>
+<% if optvalue.is_a?(Array) -%>
+option <%= optname %> <%= optvalue.join(",") %>;
+<% else -%>
+option <%= optname %> <%= optvalue %>;
+<% end -%>
+<% end -%>
+
+<% @include.each do |value| -%>
+include "<%= value %>";
+<% end -%>
+
+<% if @ddns_domainname -%>
+ddns-domainname "<%= @ddns_domainname %>";
+<% end -%>
+<% if @ddns_update_style -%>
+ddns-update-style <%= @ddns_update_style %>;
+<% end -%>
+
+<% @ddns_zones.each do |zonename,data| -%>
+zone <%= zonename %> {
+  <% data.each do |opt,value| -%><%= opt %> <%= value %>;<% end -%>
+}
+<% end -%>

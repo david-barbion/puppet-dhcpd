@@ -1,0 +1,15 @@
+# subnet <%= @name %>
+subnet <%= @network %> netmask <%= @netmask %> {
+<% @options.each do |optname,optvalue| -%>
+<% if optvalue.is_a?(Array) -%>
+  option <%= optname %> <%= optvalue.join(",") %>;
+<% else -%>
+<% if optname == 'routers' or optname == 'broadcast-address' or optname == 'netbios-name-servers' or optname = 'subnet-mask' -%>
+  option <%= optname %> <%= optvalue %>;
+<% else -%>
+  option <%= optname %> "<%= optvalue %>";
+<% end -%>
+<% end -%>
+<% end -%>
+
+

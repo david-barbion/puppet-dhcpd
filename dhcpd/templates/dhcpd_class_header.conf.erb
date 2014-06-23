@@ -1,0 +1,12 @@
+# class <%= @name %>
+class "<%= @name %>" {
+<% if @match_if -%>
+  match if <%= @match_if %>;
+<% end -%>
+<% if @filename -%>
+  filename "<%= @filename %>";
+<% end -%>
+<% if @next_server -%>
+  next-server <%= @next_server %>;
+<% end -%>
+}

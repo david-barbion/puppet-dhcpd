@@ -1,0 +1,12 @@
+  # pool
+  pool {
+<% if @allow_members_of %>    allow members of "<%= @allow_members_of %>";<%end%>
+<% if @default_lease_time %>    default-lease-time <%= @default_lease_time %>;<%end%>
+<% if @max_lease_time %>    max-lease-time <%= @max_lease_time %>;<%end%>
+<% if @allow_unknown_clients == true %>    allow unknown-clients;<%end%>
+<% if @ranges -%>
+<% @ranges.each do |rangedata| -%>
+    range <%=rangedata%>;
+<%end-%>
+<%end-%>
+  }
