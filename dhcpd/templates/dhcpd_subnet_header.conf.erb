@@ -4,12 +4,22 @@ subnet <%= @network %> netmask <%= @netmask %> {
 <% if optvalue.is_a?(Array) -%>
   option <%= optname %> <%= optvalue.join(",") %>;
 <% else -%>
-<% if optname == 'routers' or optname == 'broadcast-address' or optname == 'netbios-name-servers' or optname = 'subnet-mask' -%>
-  option <%= optname %> <%= optvalue %>;
-<% else -%>
+<% if optname == 'domain-name' or optname == 'filename' -%>
   option <%= optname %> "<%= optvalue %>";
+<% else -%>
+  option <%= optname %> <%= optvalue %>;
 <% end -%>
 <% end -%>
 <% end -%>
 
-
+<% if @ranges -%>
+<% @ranges.each do |range| -%>
+  range <%= range -%>;
+<% end -%>
+<% end -%>
+<% if @next_server -%>
+  next-server <%= @next_server %>;
+<% end -%>
+<% if @filename -%>
+  filename "<%= @filename %>";
+<% end -%>

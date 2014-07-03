@@ -30,12 +30,15 @@
 # David Barbion <david.barbion@ext.leroymerlin.fr>
 #
 class dhcpd::config(
-$config_file='',
-$options={},
-$include=[],
-$ddns_domainname = '',
+$config_file       = '',
+$options           = {},
+$include           = [],
+$ddns_domainname   = '',
 $ddns_update_style = '',
-$ddns_zones = {},
+$ddns_zones        = {},
+$omapi_port        = undef,
+$omapi_key         = undef,
+$authoritative     = undef,
 ) {
   include dhcpd::params
 

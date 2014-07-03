@@ -1,15 +1,27 @@
 define dhcpd::pool(
-$config_file           = '',
-$allow_members_of      = '',
-$allow_unknown_clients = true,
-$default_lease_time    = '3600',
-$max_lease_time        = '3600',
-$ranges                = [],
-$order                 = '11',
+$config_file                   = '',
+$allow_members_of              = [],
+$deny_members_of               = [],
+$allow_known_clients           = false,
+$deny_known_clients            = false,
+$allow_unknown_clients         = false,
+$deny_unknown_clients          = false,
+$allow_dynamic_bootp_clients   = false,
+$deny_dynamic_bootp_clients    = false,
+$allow_all_clients             = false,
+$deny_all_clients              = false,
+$default_lease_time            = '',
+$max_lease_time                = '',
+$ranges                        = [],
+$order                         = '10',
+$subnet_name                   = ''
 ) {
   include dhcpd::params
 
-  concat::fragment { "pool_${::name}":
+  if $subnet_name == '' {
+    fail('Need subnet name to attach to')
+  }
+  concat::fragment { "${order}_${subnet_name}_subnet_2":
     content => template('dhcpd/dhcpd_subnet_pool.conf.erb'),
     target  => $config_file,
     order   => $order

@@ -8,4 +8,4 @@ description 'configure isc-dhcpd service'
 project_page 'https://bitbucket.org/archidevlm/frlm-tech-puppet'
 
 ## Add dependencies, if any:
-# dependency 'username/name', '>= 1.2.0'
+dependency 'username/name', '>= 1.2.0'
