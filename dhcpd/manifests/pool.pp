@@ -21,7 +21,8 @@ $subnet_name                   = ''
   if $subnet_name == '' {
     fail('Need subnet name to attach to')
   }
-  concat::fragment { "${order}_${subnet_name}_subnet_2":
+  $_poolname = regsubst($title, ' ', '_', 'G')
+  concat::fragment { "${order}_${subnet_name}_subnet_2_${_poolname}":
     content => template('dhcpd/dhcpd_subnet_pool.conf.erb'),
     target  => $config_file,
     order   => $order
