@@ -57,15 +57,8 @@ $global_config       = {},
 
   notice("config_file = ${config_file}")
 
-#  $config_params = {
-#    'dhcpd::config' => $global_config
-#  }
   $config_params = { 'dhcpd::config' => merge($global_config, {config_file => $config_file}) }
   create_resources( 'class', $config_params)
-#  class { 'dhcpd::config':
-#    config      => $global_config,
-#    config_file => $config_file,
-#  }
 
   Class['dhcpd::config'] ~> Class ['dhcpd::service']
 }

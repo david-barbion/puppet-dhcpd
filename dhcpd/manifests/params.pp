@@ -4,10 +4,25 @@
 #
 # === Authors
 #
-# David Barbion <david.barbion@ext.leroymerlin.fr>
+# David Barbion <dbarbion@gmail.com>
 #
 class dhcpd::params {
-  $package_name = 'dhcp'
-  $service_name = 'dhcpd'
-  $config_file  = '/etc/dhcpd.conf'
+  case $::osfamily {
+    redhat: {
+      $package_name = 'dhcp'
+      $service_name = 'dhcpd'
+      case $::operatingsystemmajrelease {
+        3,4,5: {
+          $config_file  = '/etc/dhcpd.conf'
+        }
+        6,7: {
+          $config_file  = '/etc/dhcp/dhcpd.conf'
+        }
+        default: {
+          fail('os version not supported')
+        }
+      }
+    }
+    default: { fail('osfamily not supported') }
+  }
 }

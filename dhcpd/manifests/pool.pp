@@ -1,5 +1,5 @@
 define dhcpd::pool(
-$config_file                   = '',
+$config_file                   = $::dhcpd::config_file,
 $allow_members_of              = [],
 $deny_members_of               = [],
 $allow_known_clients           = false,

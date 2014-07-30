@@ -4,7 +4,7 @@
 #
 # === Authors
 #
-# David Barbion <david.barbion@ext.leroymerlin.fr>
+# David Barbion <dbarbion@gmail.com>
 #
 class dhcpd::install {
   include dhcpd::params

@@ -27,7 +27,7 @@
 #
 # === Authors
 #
-# David Barbion <david.barbion@ext.leroymerlin.fr>
+# David Barbion <dbarbion@gmail.com>
 #
 class dhcpd::config(
 $config_file       = '',

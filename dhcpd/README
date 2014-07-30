@@ -1,16 +1,12 @@
-dhcpd
+davidb-dhcpd
 
 This is the dhcpd module.
 
 License
 -------
-
-
-Contact
--------
-
+Apache License, Version 2.0
 
 Support
 -------
 
-Please log tickets and issues at our [Projects site](http://projects.example.com)
+Please log tickets and issues at our [Projects site](https://github.com/david-barbion/puppet-dhcpd/issues)

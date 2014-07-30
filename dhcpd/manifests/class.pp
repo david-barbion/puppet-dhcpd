@@ -1,5 +1,5 @@
 define dhcpd::class(
-$config_file = '',
+$config_file = $::dhcpd::config_file,
 $match_if    = '',
 $filename    = '',
 $next_server = '',

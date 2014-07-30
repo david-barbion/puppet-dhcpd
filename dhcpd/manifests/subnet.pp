@@ -1,5 +1,5 @@
 define dhcpd::subnet(
-$config_file = '/etc/dhcpd.conf',
+$config_file = $::dhcpd::config_file,
 $network     = '',
 $netmask     = '',
 $options     = {},
