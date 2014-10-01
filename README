@@ -1,12 +1,12 @@
-Puppet modules
-~~~~~~~~~~~~~~
+davidb-dhcpd
 
-Here is a list of Puppet modules. Each modules should be developed in its own branch
+This is the dhcpd module.
 
-Merge to development
-~~~~~~~~~~~~~~~~~~~~
-Once the module is working, merge development branch with your new branch.
+License
+-------
+Apache License, Version 2.0
 
-Merge to production
-~~~~~~~~~~~~~~~~~~~
-Once tested in development, merge production branch with your validated branch.
+Support
+-------
+
+Please log tickets and issues at our [Projects site](https://github.com/david-barbion/puppet-dhcpd/issues)
