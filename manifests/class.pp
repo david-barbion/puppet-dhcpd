@@ -1,8 +1,8 @@
 define dhcpd::class(
 $config_file        = $::dhcpd::config_file,
-$match_if           = '',
-$filename           = '',
-$next_server        = '',
+$match_if           = undef,
+$filename           = undef,
+$next_server        = undef,
 $order              = '03',
 $max_lease_time     = undef,
 $default_lease_time = undef,
