@@ -1,13 +1,18 @@
 define dhcpd::subnet(
-$config_file = $::dhcpd::config_file,
-$network     = '',
-$netmask     = '',
-$options     = {},
-$order       = '10',
-$pools       = undef,
-$ranges      = undef,
-$next_server = undef,
-$filename    = undef,
+$config_file               = $::dhcpd::config_file,
+$network                   = '',
+$netmask                   = '',
+$options                   = {},
+$order                     = '10',
+$pools                     = undef,
+$ranges                    = undef,
+$next_server               = undef,
+$filename                  = undef,
+$deny_duplicates           = false,
+$allow_duplicates          = false,
+$deny_client_updates       = false,
+$allow_client_updates      = false,
+$update_conflict_detection = false,
 ) {
   include dhcpd::params
 

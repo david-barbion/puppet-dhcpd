@@ -23,3 +23,18 @@ subnet <%= @network %> netmask <%= @netmask %> {
 <% if @filename -%>
   filename "<%= @filename %>";
 <% end -%>
+<% if @deny_duplicates -%>
+  deny duplicates;
+<% end -%>
+<% if @allow_duplicates -%>
+  allow duplicates;
+<% end -%>
+<% if @deny_client_updates -%>
+  deny client-updates;
+<% end -%>
+<% if @allow_client_updates -%>
+  allow client-updates;
+<% end -%>
+<% if @update_conflict_detection -%>
+  update-conflict-detection;
+<% end -%>
