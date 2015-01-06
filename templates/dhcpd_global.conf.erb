@@ -3,7 +3,7 @@ authoritative;
 <% end -%>
 
 # Global configuration follows
-<% @options.each do |optname,optvalue| -%>
+<% @options.sort.map do |optname,optvalue| -%>
 <% if optvalue.is_a?(Array) -%>
 option <%= optname %> <%= optvalue.join(",") %>;
 <% else -%>
@@ -26,9 +26,9 @@ ddns-domainname "<%= @ddns_domainname %>";
 ddns-update-style <%= @ddns_update_style %>;
 <% end -%>
 
-<% @ddns_zones.each do |zonename,data| -%>
+<% @ddns_zones.sort.map do |zonename,data| -%>
 zone <%= zonename %> {
-<% data.each do |opt,value| -%>
+<% data.sort.map do |opt,value| -%>
   <%= opt %> <%= value %>;
 <% end -%>
 }

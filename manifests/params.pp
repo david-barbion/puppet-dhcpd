@@ -11,7 +11,7 @@ class dhcpd::params {
     redhat: {
       $package_name = 'dhcp'
       $service_name = 'dhcpd'
-      case $::lsbmajdistrelease {
+      case $::operatingsystemmajrelease {
         3,4,5: {
           $config_file  = '/etc/dhcpd.conf'
         }

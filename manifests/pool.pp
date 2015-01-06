@@ -14,15 +14,26 @@ $default_lease_time            = '',
 $max_lease_time                = '',
 $ranges                        = [],
 $order                         = '10',
-$subnet_name                   = ''
+$subnet_name                   = undef,
+$shared_network_name           = 'global',
 ) {
   include dhcpd::params
 
-  if $subnet_name == '' {
-    fail('Need subnet name to attach to')
-  }
+  validate_string($subnet_name)
+  validate_string($shared_network_name)
+
   $_poolname = regsubst($title, ' ', '_', 'G')
-  concat::fragment { "${order}_${subnet_name}_subnet_2_${_poolname}":
+  $_subnet_name = regsubst($subnet_name, ' ', '_', 'G')
+  $_shared_network_name = regsubst($shared_network_name, ' ', '_', 'G')
+
+  # control number of spaces before the template
+  if $shared_network_name == 'global' {
+    $front_spaces = ''
+  }else {
+    $front_spaces = '  '
+  }
+
+  concat::fragment { "${_shared_network_name}_2_${_subnet_name}_subnet_2_${_poolname}":
     content => template('dhcpd/dhcpd_subnet_pool.conf.erb'),
     target  => $config_file,
     order   => $order
