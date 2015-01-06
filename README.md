@@ -59,7 +59,7 @@ Supported DHCP items:
     next_server => $::ipaddress_eth0,
   }
 ```
-  
+
 ### Example of subnet with two pools
 
 ```
@@ -148,5 +148,4 @@ Supported DHCP items:
     netmask     => $::netmask_eth0,
   }
 ```
-
 
