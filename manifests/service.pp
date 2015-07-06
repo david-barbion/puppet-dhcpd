@@ -5,6 +5,7 @@ class dhcpd::service {
     enable     => true,
     hasstatus  => true,
     hasrestart => true,
+    require    => Exec['dhcpd-config-test'],
   }
 
   # This exec tests the dhcpd config and fails if it's bad
