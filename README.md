@@ -22,6 +22,10 @@ Currently, only Redhat and derivates are supported.
         'netbios-name-servers' => [ $::ipaddress_eth0 ],
         'domain-name'          => $::domain,
       },
+      config            => {
+        'server-identifier' => $::ipaddress,
+        'log-facility'      => 'local6',
+      },
       include           => [
         '/etc/dhcpd.conf.others',
         '/etc/named-dhcpd.key',
@@ -41,7 +45,7 @@ Currently, only Redhat and derivates are supported.
 DDNS updates are supported, but you still have to manage security key (through the inclusion of an external file)
 * include statement allows you to add external managed files
 * options hash configuration global dhcpd options
-* omapi supported through omapi_ items
+* omapi supported through omapi_items
 
 Supported DHCP items:
 * class
@@ -49,6 +53,7 @@ Supported DHCP items:
 * pool
 * ranges
 * shared-network
+* failover
 
 ### Example of dhcp class
 
@@ -118,6 +123,7 @@ Supported DHCP items:
       'domain-name'         => 'shared1-example.com',
     },
     shared_network_name  => 'workstations-and-printers',
+    failover_peer        => 'dhcp-srv',
   }
   dhcpd::subnet { 'shared subnet 2':
     network => '192.168.102.0',
@@ -137,6 +143,7 @@ Supported DHCP items:
       },
     },
     shared_network_name  => 'workstations-and-printers',
+    failover_peer        => 'dhcp-srv',
   }
 ```
   
@@ -149,3 +156,25 @@ Supported DHCP items:
   }
 ```
 
+### Configuration of DHCP failover
+
+Use this class to configure DHCP failover. For full details of what these parameters do, refer to the
+[ISC DHCP documentation](https://kb.isc.org/article/AA-00502/31/A-Basic-Guide-to-Configuring-DHCP-Failover.html).
+
+Most of these parameters have sensible defaults but you **must** provide a value for `peer`, `primary`, and `peer_address`.
+
+```
+  class { 'dhcpd::failover':
+    peer                     => 'dhcp-srv',
+    primary                  => true,
+    address                  => $::fqdn,
+    port                     => 647,
+    peer_address             => 'dhcp-srv2.example.com',
+    peer_port                => 647,
+    max_response_delay       => 60,
+    max_unacked_updates      => 10,
+    load_balance_max_seconds => 3,
+    mclt                     => 1800,
+    split                    => 128,
+  }
+```
